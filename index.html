@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PromptProof Agent｜提示詞品質評估與 Token 預算助手</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <section class="hero panel">
+      <div>
+        <p class="eyebrow">AI Agent MVP · Local Demo</p>
+        <h1>PromptProof Agent</h1>
+        <p class="subtitle">提示詞品質評估、需求補全、Token Plan 預估與可截圖執行日誌</p>
+      </div>
+      <div class="hero-card">
+        <span id="runStatus" class="status-dot">READY</span>
+        <strong id="runId">RUN-20260526-DEMO</strong>
+        <small>可直接截圖作為項目運行證明</small>
+      </div>
+    </section>
+
+    <section class="grid two-col">
+      <section class="panel input-panel">
+        <div class="section-title">
+          <span>01</span>
+          <h2>輸入任務需求</h2>
+        </div>
+        <label>項目/場景名稱</label>
+        <input id="projectName" value="AI 活動文案生成流程" />
+
+        <label>原始需求描述</label>
+        <textarea id="rawTask" rows="9">我們要做一個活動宣傳文案生成工具，使用者輸入產品賣點後，自動輸出標題、副標題、社群貼文和廣告文案。希望語氣高級、正式、可控，不要每次結果都偏題。</textarea>
+
+        <div class="metrics-inputs">
+          <div>
+            <label>團隊人數</label>
+            <input id="users" type="number" value="10" min="1" />
+          </div>
+          <div>
+            <label>每人每日次數</label>
+            <input id="runsPerUser" type="number" value="20" min="1" />
+          </div>
+          <div>
+            <label>每次輸入 Token</label>
+            <input id="inputToken" type="number" value="900" min="100" />
+          </div>
+          <div>
+            <label>每次輸出 Token</label>
+            <input id="outputToken" type="number" value="1200" min="100" />
+          </div>
+        </div>
+
+        <div class="button-row">
+          <button id="runBtn" class="primary">Run Agent</button>
+          <button id="demoBtn">載入 Demo</button>
+          <button id="copyBtn">複製報告</button>
+        </div>
+      </section>
+
+      <section class="panel score-panel">
+        <div class="section-title">
+          <span>02</span>
+          <h2>Agent 評估結果</h2>
+        </div>
+        <div class="score-ring">
+          <div>
+            <small>Prompt Quality Score</small>
+            <strong id="score">86</strong>
+            <em>/100</em>
+          </div>
+        </div>
+        <div class="kpi-grid">
+          <div class="kpi">
+            <small>預估每日 Token</small>
+            <strong id="dailyTokens">420,000</strong>
+          </div>
+          <div class="kpi">
+            <small>預估每月 Token</small>
+            <strong id="monthlyTokens">12,600,000</strong>
+          </div>
+          <div class="kpi">
+            <small>返工降低預估</small>
+            <strong id="savings">34%</strong>
+          </div>
+          <div class="kpi">
+            <small>Agent 流程節點</small>
+            <strong>5</strong>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section class="grid two-col output-grid">
+      <section class="panel">
+        <div class="section-title">
+          <span>03</span>
+          <h2>優化後 Prompt</h2>
+        </div>
+        <pre id="optimizedPrompt"></pre>
+      </section>
+
+      <section class="panel">
+        <div class="section-title">
+          <span>04</span>
+          <h2>多 Agent 工作流</h2>
+        </div>
+        <div id="workflow" class="timeline"></div>
+      </section>
+    </section>
+
+    <section class="panel log-panel">
+      <div class="section-title">
+        <span>05</span>
+        <h2>可截圖執行日誌 / Evidence Log</h2>
+      </div>
+      <pre id="logOutput"></pre>
+      <button id="downloadLogBtn">下載 JSON 日誌</button>
+    </section>
+  </main>
+
+  <script src="agent.js"></script>
+</body>
+</html>
