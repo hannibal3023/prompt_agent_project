@@ -1,2 +1,1 @@
-# prompt_agent_project
-prompt_agent_project
+A lightweight multi-agent prompt quality evaluator and token budget planner.
